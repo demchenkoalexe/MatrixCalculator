@@ -17,5 +17,15 @@ class TestMatrixCalculator(unittest.TestCase):
 		D = [[1, 1, 1], [2, 2, 2]]
 		self.assertFalse(mc.addTwoMatrix(A, D)) #ошибка при попытке сложить матрицы разной размерности
 
+	def test_diff(self):
+		mc = MatrixCalculator()
+		A = [[2, 2], [1, 1]]
+		B = [[1, 1], [3, 3]]
+		C = [[1, 1], [-2, -2]]
+		self.assertEquals(mc.diffTwoMatrix(A, B), C) #при разности матриц A и B, получим C
+
+		D = [[1, 1, 1], [2, 2, 2]]
+		self.assertFalse(mc.diffTwoMatrix(A, D)) #ошибка при попытке вычесть матрицы разной размерности
+
 if __name__ == "__main__":
 	unittest.main()
