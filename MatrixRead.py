@@ -12,7 +12,7 @@ def readFile(name):
 			operation = line[0]
 			continue
 
-		if (operation == '+'):
+		if (operation == '+' or operation == '-'):
 			if (line == '\n'):
 				if (not A):
 					A = copy.copy(matrixRead)
