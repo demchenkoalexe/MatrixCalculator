@@ -1,11 +1,11 @@
 import unittest
-from MatrixCalculator import MatrixCalculator as mc
+from MatrixCalculator import *
 
 class TestMatrixCalculator(unittest.TestCase):
 
-	def matrixCalcCreationTest(self):
-		self.matrixCalculator = mc.MatrixCalculator()
-		self.assertIsNotNone(self.matrixCalculator)
+	def test_matrixCalcCreationTest(self):
+		matrixCalculator = MatrixCalculator()
+		self.assertIsNotNone(matrixCalculator)
 
 if __name__ == "__main__":
 	unittest.main()
