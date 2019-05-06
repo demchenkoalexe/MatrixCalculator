@@ -4,8 +4,18 @@ from MatrixCalculator import *
 class TestMatrixCalculator(unittest.TestCase):
 
 	def test_matrixCalcCreationTest(self):
-		matrixCalculator = MatrixCalculator()
-		self.assertIsNotNone(matrixCalculator)
+		mc = MatrixCalculator()
+		self.assertIsNotNone(mc)
+
+	def test_add(self):
+		mc = MatrixCalculator()
+		A = [[1, 1], [2, 2]]
+		B = [[1, 1], [3, 3]]
+		C = [[2, 2], [5, 5]]
+		self.assertEquals(mc.addTwoMatrix(A, B), C) #при сложении матриц A и B, получим C
+
+		D = [[1, 1, 1], [2, 2, 2]]
+		self.assertFalse(mc.addTwoMatrix(A, D)) #ошибка при попытке сложить матрицы разной размерности
 
 if __name__ == "__main__":
 	unittest.main()
