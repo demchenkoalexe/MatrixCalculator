@@ -57,10 +57,15 @@ def main():
 
 	if ( operation == '+' ):
 		C = mc.addTwoMatrix(A, B)
-		print(C)
 	elif ( operation == '-' ):
 		C = mc.diffTwoMatrix(A, B)
+
+
+	if (C):
 		print(C)
+	else:
+		print("You input non-corrective matrices. Check the dimemsions and rows of each matrix.")
+	return
 
 if __name__ == "__main__":
 	main()

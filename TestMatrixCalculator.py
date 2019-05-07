@@ -27,5 +27,16 @@ class TestMatrixCalculator(unittest.TestCase):
 		D = [[1, 1, 1], [2, 2, 2]]
 		self.assertFalse(mc.diffTwoMatrix(A, D)) #ошибка при попытке вычесть матрицы разной размерности
 
+	def test_multiByNumber(self):
+		mc = MatrixCalculator()
+		A = [[2, 2, 2, 2], [3, 4, 5, 6]]
+		num1 = 0
+		self.assertEquals(mc.multiMatrixByNumber(A, num1), [[0, 0, 0, 0], [0, 0, 0, 0]])
+
+		num2 = 4
+		self.assertEquals(mc.multiMatrixByNumber(A, num2), [[8, 8, 8, 8], [12, 16, 20, 24]])
+
+
+
 if __name__ == "__main__":
 	unittest.main()
