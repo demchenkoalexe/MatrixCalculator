@@ -142,8 +142,6 @@ def main():
 	if (not operation):
 		return
 
-	print(operation, A, B)
-
 	C = []
 	if ( operation == '+' ):
 		C = mc.addTwoMatrix(A, B)
