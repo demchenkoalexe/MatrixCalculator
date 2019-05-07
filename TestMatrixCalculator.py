@@ -36,7 +36,10 @@ class TestMatrixCalculator(unittest.TestCase):
 		num2 = 4
 		self.assertEquals(mc.multiMatrixByNumber(A, num2), [[8, 8, 8, 8], [12, 16, 20, 24]])
 
-
+	def test_transpose(self):
+		mc = MatrixCalculator()
+		A = [[2, 3, 4, 5], [9, 8, 2, 5]]
+		self.assertEquals(mc.transpose(A), [[2, 9], [3, 8], [4, 2], [5, 5]])
 
 if __name__ == "__main__":
 	unittest.main()

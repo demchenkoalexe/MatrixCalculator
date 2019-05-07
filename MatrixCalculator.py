@@ -56,6 +56,10 @@ class MatrixCalculator():
 	# @return - матрица, результат умножения матрицы на число
 	def multiMatrixByNumber(self, A, B):
 		C = [] #матрица результата
+		for i in range(len(A) - 1):
+			#проверка матрицы на баги в строках (такие, как неодинаковое количество элементов)
+			if ( len(A[i]) != len(A[i + 1])):
+				return False
 		for i in A:
 			AnumberB = [] #одна строка будущей результирующей матрицы
 			for j in i:
