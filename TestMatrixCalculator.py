@@ -41,5 +41,15 @@ class TestMatrixCalculator(unittest.TestCase):
 		A = [[2, 3, 4, 5], [9, 8, 2, 5]]
 		self.assertEquals(mc.transpose(A), [[2, 9], [3, 8], [4, 2], [5, 5]])
 
+	def test_multiTwoMatrix(self):
+		mc = MatrixCalculator()
+		A = [[-1, 2, -3, 0], [5, 4, -2, 1], [-8, 11, -10, -5]]
+		B = [[-9, 3], [6, 20], [7, 0], [12, -4]]
+		C = [[0, 37], [-23, 91], [8, 216]]
+		self.assertEquals(mc.multiTwoMatrix(A, B), C)
+
+		D = [[1, 1], [2, 2]]
+		self.assertFalse(mc.multiTwoMatrix(A, D))
+
 if __name__ == "__main__":
 	unittest.main()
