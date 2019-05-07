@@ -39,3 +39,6 @@ def step_impl(context, C):
 def step_impl(context, C):
 	assert context.mc.multiTwoMatrix(context.matrixA, context.matrixB) == json.loads(C)
 
+@then('the pow result should be {C}')
+def step_impl(context, C):
+	assert context.mc.powMatrix(context.matrixA, context.num) == json.loads(C)

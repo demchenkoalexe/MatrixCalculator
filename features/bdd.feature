@@ -28,3 +28,9 @@ Feature: Matrix Calculator testing
     When we have [[-1, 2, -3, 0], [5, 4, -2, 1], [-8, 11, -10, -5]] as first matrix
     And we have [[-9, 3], [6, 20], [7, 0], [12, -4]] as second matrix
     Then the multi result should be [[0, 37], [-23, 91], [8, 216]]
+
+  Scenario: Pow matrix
+    Given we have matrix calculator
+    When we have [[1, 2], [3, 4]] as first matrix
+    And we have 4 number
+    Then the pow result should be [[199, 290], [435, 634]]
