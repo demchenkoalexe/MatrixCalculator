@@ -5,7 +5,7 @@ def readFile(name):
 	f = open(name, 'r')
 	firstString = True
 	matrixRead = []
-	A = []
+	A, B = [], []
 	for line in f:
 		if (firstString):
 			firstString = False
@@ -16,7 +16,7 @@ def readFile(name):
 			if (operation == '*'):  #в случае умножения на число
 				if ( m[1] ):
 					B = int(m[1])
-					continue
+			continue
 
 		if (operation):
 			if (line == '\n'):
@@ -25,6 +25,8 @@ def readFile(name):
 					matrixRead = []
 				if (B):
 					return operation, A, B
+				elif (operation == 'T'):
+					return operation, A, None
 			else: 
 				m = line.rstrip().split(' ')
 				m = [int(item) for item in m]

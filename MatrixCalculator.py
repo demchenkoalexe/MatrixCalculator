@@ -1,8 +1,20 @@
 from MatrixRead import readFile
+import copy
 
 class MatrixCalculator():
 	def __init__(self):
 		pass
+
+	## Метод, реализующий провекру ошибки ввода матрицы
+	# @param A - матрица (двумерный список) первая
+	# @return - True or False
+	@staticmethod
+	def bagMatrix(A):
+		for i in range(len(A) - 1):
+			#проверка матрицы на баги в строках (такие, как неодинаковое количество элементов)
+			if ( len(A[i]) != len(A[i + 1])):
+				return True
+		return False
 
 	## Метод, реализующий сложения двух матриц
 	# @param A - матрица (двумерный список) первая
@@ -12,10 +24,8 @@ class MatrixCalculator():
 		C = [] #матрица результата
 		#проверка матриц на соответсвие размерности
 		if ( len(A) == len(B) and len(A[0]) == len(B[0]) ):
-			for i in range(len(A) - 1):
-				#проверка матриц на баги в строках (такие, как неодинаковое количество элементов)
-				if ( len(A[i]) != len(A[i + 1]) or len(B[i]) != len(B[i + 1]) ):
-					return False
+			if (MatrixCalculator.bagMatrix(A) and MatrixCalculator.bagMatrix(B)):
+				return False
 
 			#непосредственно сложение
 			for i in range(len(A)):
@@ -35,10 +45,8 @@ class MatrixCalculator():
 		C = [] #матрица результата
 		#проверка матриц на соответсвие размерности
 		if ( len(A) == len(B) and len(A[0]) == len(B[0]) ):
-			for i in range(len(A) - 1):
-				#проверка матриц на баги в строках (такие, как неодинаковое количество элементов)
-				if ( len(A[i]) != len(A[i + 1]) or len(B[i]) != len(B[i + 1]) ):
-					return False
+			if (MatrixCalculator.bagMatrix(A) and MatrixCalculator.bagMatrix(B)):
+				return False
 
 			#непосредственно разность
 			for i in range(len(A)):
@@ -56,15 +64,27 @@ class MatrixCalculator():
 	# @return - матрица, результат умножения матрицы на число
 	def multiMatrixByNumber(self, A, B):
 		C = [] #матрица результата
-		for i in range(len(A) - 1):
-			#проверка матрицы на баги в строках (такие, как неодинаковое количество элементов)
-			if ( len(A[i]) != len(A[i + 1])):
-				return False
+		if (MatrixCalculator.bagMatrix(A)):
+			return False
 		for i in A:
 			AnumberB = [] #одна строка будущей результирующей матрицы
 			for j in i:
 				AnumberB.append(j * B)
 			C.append(AnumberB)
+		return C
+
+	## Метод, реализующий транспонирование матрицы
+	# @param A - матрица (двумерный список)
+	# @return - матрица, результат транспонирования
+	def transpose(self, A):
+		C = [] #матрица результата
+		if (MatrixCalculator.bagMatrix(A)):
+			return False
+		for i in range(len(A[0])):
+			Atranspose = []
+			for j in range(len(A)):
+				Atranspose.append(A[j][i])
+			C.append(Atranspose)
 		return C
 
 
@@ -81,6 +101,8 @@ def main():
 	elif ( operation == '*' ):
 		if ( type(B) == int ):
 			C = mc.multiMatrixByNumber(A, B)
+	elif ( operation == 'T' ):
+		C = mc.transpose(A)
 
 	if (C):
 		print(C)
