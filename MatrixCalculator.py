@@ -1,4 +1,4 @@
-from MatrixRead import readFile
+from MatrixRead import readFile, getEMatrix
 import copy
 
 class MatrixCalculator():
@@ -97,7 +97,7 @@ class MatrixCalculator():
 		if ( len(A[0]) == len(B) ):
 			if (MatrixCalculator.bagMatrix(A) and MatrixCalculator.bagMatrix(B)):
 				return False
-			Bt = MatrixCalculator.transpose(self, B)
+			Bt = self.transpose(B)
 			for i in A:
 				AmultiB = []
 				for j in Bt:
@@ -110,11 +110,39 @@ class MatrixCalculator():
 			return False
 		return C
 
+	## Метод, реализующий возведение матрицы в степень
+	# @param A - матрица (двумерный список) NxN
+	# @param B - степень
+	# @return - матрица, результат возведения в степень
+	def powMatrix(self, A, B):
+		C = copy.copy(A) #матрица результата
+		#проверка матриц на соответсвие размерности
+		if ( len(A[0]) == len(A) ):
+			if (MatrixCalculator.bagMatrix(A)):
+				return False
+			if ( B == 1 ):
+				return C
+			elif( B == 0 ):
+				C = getEMatrix(len(A))
+				return C
+			else:
+				i = 0
+				while ( i < B - 1 ):
+					C = copy.copy(self.multiTwoMatrix(C, A))
+					i += 1
+		else:
+			return False
+		return C
+
 
 def main():
 	mc = MatrixCalculator()
 
 	operation, A, B = readFile('input.txt')
+	if (not operation):
+		return
+
+	print(operation, A, B)
 
 	C = []
 	if ( operation == '+' ):
@@ -128,6 +156,11 @@ def main():
 			C = mc.multiTwoMatrix(A, B)
 	elif ( operation == 'T' ):
 		C = mc.transpose(A)
+	elif ( operation == '^' ):
+		if (B < 0):
+			print("Negative degree. Correct.")
+			return
+		C = mc.powMatrix(A, B)
 
 	if (C):
 		print(C)
