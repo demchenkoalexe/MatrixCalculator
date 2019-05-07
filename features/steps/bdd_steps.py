@@ -15,6 +15,10 @@ def step_impl(context, A):
 def step_impl(context, B): 
 	context.matrixB = json.loads(B)
 
-@then('the result should be {C}')
+@then('the add result should be {C}')
 def step_impl(context, C):
 	assert context.mc.addTwoMatrix(context.matrixA, context.matrixB) == json.loads(C)
+
+@then('the diff result should be {C}')
+def step_impl(context, C):
+	assert context.mc.diffTwoMatrix(context.matrixA, context.matrixB) == json.loads(C)
