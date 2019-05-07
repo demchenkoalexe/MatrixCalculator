@@ -14,7 +14,7 @@ def readFile(name):
 			operation = m[0]
 
 			if (operation == '*'):  #в случае умножения на число
-				if ( m[1] ):
+				if ( len(m) > 1 ):
 					B = int(m[1])
 			continue
 

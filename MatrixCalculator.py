@@ -87,6 +87,29 @@ class MatrixCalculator():
 			C.append(Atranspose)
 		return C
 
+	## Метод, реализующий произведение матриц
+	# @param A - матрица (двумерный список) первая NxM
+	# @param B - матрица (двумерный список) вторая MxK
+	# @return - матрица, результат произведения
+	def multiTwoMatrix(self, A, B):
+		C = [] #матрица результата
+		#проверка матриц на соответсвие размерности
+		if ( len(A[0]) == len(B) ):
+			if (MatrixCalculator.bagMatrix(A) and MatrixCalculator.bagMatrix(B)):
+				return False
+			Bt = MatrixCalculator.transpose(self, B)
+			for i in A:
+				AmultiB = []
+				for j in Bt:
+					c = 0
+					for k in range(len(i)):
+						c += i[k] * j[k]
+					AmultiB.append(c)
+				C.append(AmultiB)
+		else:
+			return False
+		return C
+
 
 def main():
 	mc = MatrixCalculator()
@@ -101,6 +124,8 @@ def main():
 	elif ( operation == '*' ):
 		if ( type(B) == int ):
 			C = mc.multiMatrixByNumber(A, B)
+		else:
+			C = mc.multiTwoMatrix(A, B)
 	elif ( operation == 'T' ):
 		C = mc.transpose(A)
 
