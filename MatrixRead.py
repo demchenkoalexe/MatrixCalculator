@@ -1,7 +1,7 @@
 import copy
 
 def readFile(name):
-	#ЧТЕНИЕ МАТРИЦ и ОПЕРАЦИИ НАД НИМИ ИЗ ФАЙЛА
+	#ЧТЕНИЕ МАТРИЦ и ОПЕРАЦИЙ НАД НИМИ ИЗ ФАЙЛА
 	f = open(name, 'r')
 	firstString = True
 	matrixRead = []
@@ -9,14 +9,22 @@ def readFile(name):
 	for line in f:
 		if (firstString):
 			firstString = False
-			operation = line[0]
-			continue
 
-		if (operation == '+' or operation == '-'):
+			m = line.rstrip().split(' ')
+			operation = m[0]
+
+			if (operation == '*'):  #в случае умножения на число
+				if ( m[1] ):
+					B = int(m[1])
+					continue
+
+		if (operation):
 			if (line == '\n'):
 				if (not A):
 					A = copy.copy(matrixRead)
 					matrixRead = []
+				if (B):
+					return operation, A, B
 			else: 
 				m = line.rstrip().split(' ')
 				m = [int(item) for item in m]
