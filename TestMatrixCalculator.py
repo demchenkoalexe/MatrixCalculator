@@ -51,5 +51,16 @@ class TestMatrixCalculator(unittest.TestCase):
 		D = [[1, 1], [2, 2]]
 		self.assertFalse(mc.multiTwoMatrix(A, D))
 
+	def test_pow(self):
+		mc = MatrixCalculator()
+		A = [[1, 2], [3, 4]]
+		pow1 = 0
+		pow2 = 4
+		self.assertEqual(mc.powMatrix(A, pow1), [[1, 0], [0, 1]])
+		self.assertEqual(mc.powMatrix(A, pow2), [[199, 290], [435, 634]])
+
+		D = [[1], [1, 2]]
+		self.assertFalse(mc.powMatrix(D, pow2))
+
 if __name__ == "__main__":
 	unittest.main()
